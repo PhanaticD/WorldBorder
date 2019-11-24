@@ -249,7 +249,7 @@ public class WorldFillTask implements Runnable
 			if (!chunkOnUnloadPreventionList(unload.x, unload.z))
 			{
 				world.setChunkForceLoaded(unload.x, unload.z, false);
-				world.unloadChunkRequest(unload.x, unload.z);
+				//world.unloadChunkRequest(unload.x, unload.z);
 			}
 		}
 
@@ -265,8 +265,9 @@ public class WorldFillTask implements Runnable
 		{
 			// Note we generally queue 3 chunks, so real numbers are 1/3 of chunksProcessedLastTick and pendingchunks.size
 			int chunksExpectedToGetProcessed = (chunksProcessedLastTick - pendingChunks.size()) / 3 + 3;
-			if (chunksExpectedToGetProcessed < chunksToProcess)
+			if (chunksExpectedToGetProcessed < chunksToProcess) {
 				chunksToProcess = chunksExpectedToGetProcessed;
+			}
 		}
 
 		for (int loop = 0; loop < chunksToProcess; loop++)
